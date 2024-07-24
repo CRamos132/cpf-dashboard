@@ -6,18 +6,19 @@ import {
   HiOutlineTrash,
 } from "react-icons/hi";
 import * as S from "./styles";
-
-export interface RegistrationCardData {
-  employeeName: string
-  email: string
-  admissionDate: string
-}
+import { IRegistration } from "../../hooks";
 
 type Props = {
-  data: RegistrationCardData;
+  data: IRegistration;
+  deleteRegistration: (userId: string) => void
 };
 
-const RegistrationCard = ({ data }: Props) => {
+const RegistrationCard = ({ data, deleteRegistration }: Props) => {
+
+  const callDeleteRegistration = () => {
+    deleteRegistration(data.id)
+  }
+
   return (
     <S.Card>
       <S.IconAndText>
@@ -37,7 +38,7 @@ const RegistrationCard = ({ data }: Props) => {
         <ButtonSmall bgcolor="rgb(155, 229, 155)">Aprovar</ButtonSmall>
         <ButtonSmall bgcolor="#ff8858">Revisar novamente</ButtonSmall>
 
-        <HiOutlineTrash />
+        <HiOutlineTrash onClick={callDeleteRegistration} />
       </S.Actions>
     </S.Card>
   );

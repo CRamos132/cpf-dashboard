@@ -1,7 +1,8 @@
 
 import * as S from "./styles";
 import RegistrationCard from "../RegistrationCard";
-import { RegistrationStatus } from "../../hooks";
+import { IRegistration, RegistrationStatus } from "../../hooks";
+import useColumns from "./hooks";
 
 interface IColumn {
   status: RegistrationStatus
@@ -15,18 +16,14 @@ const allColumns: IColumn[] = [
 ];
 
 type Props = {
-  registrations?: Record<RegistrationStatus, Record<string, any>>;
+  registrations?: IRegistration[];
 };
 
 const Collumns = ({ registrations }: Props) => {
+  const { deleteRegistration, separatedData } = useColumns(registrations)
   return (
     <S.Container>
       {allColumns.map((collum) => {
-        console.group(collum.status)
-        console.log("🚀 ~ collum.status:", collum.status)
-        console.log("🚀 ~ registrations:", registrations)
-        console.log("🚀 ~ registrations?.[collum.status]:", registrations?.[collum.status])
-        console.groupEnd()
 
         return (
           <S.Column status={collum.status} key={collum.title}>
@@ -36,24 +33,17 @@ const Collumns = ({ registrations }: Props) => {
               </S.TitleColumn>
               <S.CollumContent>
                 {
-                  registrations?.[collum.status]?.map((registration: any) => {
+                  separatedData?.[collum.status]?.map((registration: any) => {
 
                     return (
                       <RegistrationCard
                         data={registration}
                         key={registration.id}
+                        deleteRegistration={deleteRegistration}
                       />
                     );
                   })
                 }
-                {/* {props?.registrations?.map((registration) => {
-                  return (
-                    <RegistrationCard
-                      data={registration}
-                      key={registration.id}
-                    />
-                  );
-                })} */}
               </S.CollumContent>
             </>
           </S.Column>

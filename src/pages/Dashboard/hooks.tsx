@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
-import { useMemo } from "react"
 
 export type RegistrationStatus = 'REVIEW' | 'APPROVED' | 'REPROVED'
 
@@ -19,31 +18,10 @@ function useDashboard() {
     return data
   }
 
-  const { data } = useQuery({ queryKey: ['registrations'], queryFn: getRegistrations })
-
-  const separatedData = useMemo(() => {
-    const queryData: IRegistration[] = data?.data ?? []
-
-    const reducedData = queryData.reduce((prev, curr) => {
-      const currentStatus = curr.status
-      if (prev?.[currentStatus]) {
-        return {
-          ...prev,
-          [currentStatus]: [...prev[currentStatus] as Record<string, any>[], curr]
-        }
-      }
-      return {
-        ...prev,
-        [currentStatus]: [curr]
-      }
-
-    }, {} as Record<RegistrationStatus, Record<string, any>>)
-
-    return reducedData
-  }, [data?.data])
+  const { data } = useQuery<{ data: IRegistration[] }>({ queryKey: ['registrations'], queryFn: getRegistrations })
 
   return {
-    separatedData
+    data: data?.data ?? []
   }
 }
 

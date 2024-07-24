@@ -5,12 +5,12 @@ import useDashboard from "./hooks";
 
 const DashboardPage = () => {
 
-  const { separatedData } = useDashboard()
+  const { data } = useDashboard()
 
   return (
     <S.Container>
       <SearchBar />
-      <Collumns registrations={separatedData} />
+      <Collumns registrations={data} />
     </S.Container>
   );
 };
