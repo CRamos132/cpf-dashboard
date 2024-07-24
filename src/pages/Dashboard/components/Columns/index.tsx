@@ -1,30 +1,33 @@
 
 import * as S from "./styles";
 import RegistrationCard from "../RegistrationCard";
+import { RegistrationStatus } from "../../hooks";
 
-const allColumns = [
+interface IColumn {
+  status: RegistrationStatus
+  title: string
+}
+
+const allColumns: IColumn[] = [
   { status: 'REVIEW', title: "Pronto para revisar" },
   { status: 'APPROVED', title: "Aprovado" },
   { status: 'REPROVED', title: "Reprovado" },
 ];
 
-interface IRegistration {
-  admissionDate: string
-  email: string
-  employeeName: string
-  status: string
-  cpf: string
-  id: string
-}
-
 type Props = {
-  registrations?: IRegistration[];
+  registrations?: Record<RegistrationStatus, Record<string, any>>;
 };
 
-const Collumns = (props: Props) => {
+const Collumns = ({ registrations }: Props) => {
   return (
     <S.Container>
       {allColumns.map((collum) => {
+        console.group(collum.status)
+        console.log("🚀 ~ collum.status:", collum.status)
+        console.log("🚀 ~ registrations:", registrations)
+        console.log("🚀 ~ registrations?.[collum.status]:", registrations?.[collum.status])
+        console.groupEnd()
+
         return (
           <S.Column status={collum.status} key={collum.title}>
             <>
@@ -32,14 +35,25 @@ const Collumns = (props: Props) => {
                 {collum.title}
               </S.TitleColumn>
               <S.CollumContent>
-                {props?.registrations?.map((registration) => {
+                {
+                  registrations?.[collum.status]?.map((registration: any) => {
+
+                    return (
+                      <RegistrationCard
+                        data={registration}
+                        key={registration.id}
+                      />
+                    );
+                  })
+                }
+                {/* {props?.registrations?.map((registration) => {
                   return (
                     <RegistrationCard
                       data={registration}
                       key={registration.id}
                     />
                   );
-                })}
+                })} */}
               </S.CollumContent>
             </>
           </S.Column>
