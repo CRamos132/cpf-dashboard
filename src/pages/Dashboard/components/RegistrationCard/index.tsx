@@ -7,24 +7,30 @@ import {
   HiOutlineTrash,
 } from "react-icons/hi";
 
+export interface RegistrationCardData {
+  employeeName: string
+  email: string
+  admissionDate: string
+}
+
 type Props = {
-  data: any;
+  data: RegistrationCardData;
 };
 
-const RegistrationCard = (props: Props) => {
+const RegistrationCard = ({ data }: Props) => {
   return (
     <S.Card>
       <S.IconAndText>
         <HiOutlineUser />
-        <h3>{props.data.employeeName}</h3>
+        <h3>{data.employeeName}</h3>
       </S.IconAndText>
       <S.IconAndText>
         <HiOutlineMail />
-        <p>{props.data.email}</p>
+        <p>{data.email}</p>
       </S.IconAndText>
       <S.IconAndText>
         <HiOutlineCalendar />
-        <span>{props.data.admissionDate}</span>
+        <span>{data.admissionDate}</span>
       </S.IconAndText>
       <S.Actions>
         <ButtonSmall bgcolor="rgb(255, 145, 154)" >Reprovar</ButtonSmall>
