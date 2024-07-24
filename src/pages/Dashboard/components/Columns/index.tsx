@@ -8,9 +8,19 @@ const allColumns = [
   { status: 'REPROVED', title: "Reprovado" },
 ];
 
+interface IRegistration {
+  admissionDate: string
+  email: string
+  employeeName: string
+  status: string
+  cpf: string
+  id: string
+}
+
 type Props = {
-  registrations?: any[];
+  registrations?: IRegistration[];
 };
+
 const Collumns = (props: Props) => {
   return (
     <S.Container>
