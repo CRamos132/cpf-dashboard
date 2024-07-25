@@ -19,7 +19,6 @@ function useDashboard() {
   }
 
   const { data } = useQuery<IRegistration[]>({ queryKey: ['registrations'], queryFn: getRegistrations })
-  console.log("🚀 ~ data:", data)
 
   return {
     data: data ?? []
