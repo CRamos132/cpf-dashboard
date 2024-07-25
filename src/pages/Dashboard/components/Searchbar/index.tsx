@@ -6,7 +6,13 @@ import TextField from "~/components/TextField";
 import routes from "~/router/routes";
 import * as S from "./styles";
 
-export const SearchBar = () => {
+interface ISearchBarProps {
+  cpfSearchText: string
+  handleSearchChange: any
+  refresh: () => void
+}
+
+export const SearchBar = ({ cpfSearchText, handleSearchChange, refresh }: ISearchBarProps) => {
   const history = useHistory();
 
   const goToNewAdmissionPage = () => {
@@ -15,9 +21,9 @@ export const SearchBar = () => {
 
   return (
     <S.Container>
-      <TextField placeholder="Digite um CPF válido" />
+      <TextField placeholder="Digite um CPF válido" onChange={handleSearchChange} value={cpfSearchText} />
       <S.Actions>
-        <IconButton aria-label="refetch">
+        <IconButton aria-label="refetch" onClick={refresh}>
           <HiRefresh />
         </IconButton>
         <Button onClick={() => goToNewAdmissionPage()}>Nova Admissão</Button>
