@@ -7,12 +7,15 @@ import {
 } from "react-icons/hi";
 import * as S from "./styles";
 import { IRegistration, RegistrationStatus } from "../../hooks";
+import { useMemo } from "react";
 
 type Props = {
   data: IRegistration;
   deleteRegistration: (userId: string) => void
   changeRegistrationStatus: (data: { registration: IRegistration, status: RegistrationStatus }) => void
 };
+
+type AvailableActionsType = 'approve' | 'reprove' | 'review'
 
 const RegistrationCard = ({ data, deleteRegistration, changeRegistrationStatus }: Props) => {
 
@@ -25,6 +28,13 @@ const RegistrationCard = ({ data, deleteRegistration, changeRegistrationStatus }
       changeRegistrationStatus({ registration: data, status })
     }
   }
+
+  const availableActions: AvailableActionsType[] = useMemo(() => {
+    if (data.status === 'REVIEW') {
+      return ['approve', 'reprove']
+    }
+    return ['review']
+  }, [data.status])
 
   return (
     <S.Card>
@@ -41,9 +51,27 @@ const RegistrationCard = ({ data, deleteRegistration, changeRegistrationStatus }
         <span>{data.admissionDate}</span>
       </S.IconAndText>
       <S.Actions>
-        <ButtonSmall bgcolor="rgb(255, 145, 154)" onClick={handleChangeRegistrationStatus('REPROVED')}>Reprovar</ButtonSmall>
-        <ButtonSmall bgcolor="rgb(155, 229, 155)" onClick={handleChangeRegistrationStatus('APPROVED')}>Aprovar</ButtonSmall>
-        <ButtonSmall bgcolor="#ff8858" onClick={handleChangeRegistrationStatus('REVIEW')}>Revisar novamente</ButtonSmall>
+        <ButtonSmall
+          bgcolor="rgb(255, 145, 154)"
+          onClick={handleChangeRegistrationStatus('REPROVED')}
+          disabled={!availableActions.includes('reprove')}
+        >
+          Reprovar
+        </ButtonSmall>
+        <ButtonSmall
+          bgcolor="rgb(155, 229, 155)"
+          onClick={handleChangeRegistrationStatus('APPROVED')}
+          disabled={!availableActions.includes('approve')}
+        >
+          Aprovar
+        </ButtonSmall>
+        <ButtonSmall
+          bgcolor="#ff8858"
+          onClick={handleChangeRegistrationStatus('REVIEW')}
+          disabled={!availableActions.includes('review')}
+        >
+          Revisar novamente
+        </ButtonSmall>
 
         <HiOutlineTrash onClick={handleDeleteRegistration} />
       </S.Actions>
