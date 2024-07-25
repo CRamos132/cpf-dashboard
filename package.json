@@ -15,12 +15,14 @@
     "cy:open": "cypress open"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.51.11",
     "axios": "^1.7.2",
     "json-server": "^1.0.0-beta.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.1",
     "react-router-dom": "5.1.2",
+    "react-toastify": "^10.0.5",
     "styled-components": "^6.1.11"
   },
   "devDependencies": {
