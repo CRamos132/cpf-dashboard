@@ -14,14 +14,15 @@ export interface IRegistration {
 
 function useDashboard() {
   const getRegistrations = async () => {
-    const data = await axios.get('http://localhost:3000/registrations')
+    const { data } = await axios.get('http://localhost:3000/registrations')
     return data
   }
 
-  const { data } = useQuery<{ data: IRegistration[] }>({ queryKey: ['registrations'], queryFn: getRegistrations })
+  const { data } = useQuery<IRegistration[]>({ queryKey: ['registrations'], queryFn: getRegistrations })
+  console.log("🚀 ~ data:", data)
 
   return {
-    data: data?.data ?? []
+    data: data ?? []
   }
 }
 

@@ -6,17 +6,24 @@ import {
   HiOutlineTrash,
 } from "react-icons/hi";
 import * as S from "./styles";
-import { IRegistration } from "../../hooks";
+import { IRegistration, RegistrationStatus } from "../../hooks";
 
 type Props = {
   data: IRegistration;
   deleteRegistration: (userId: string) => void
+  changeRegistrationStatus: (data: { registration: IRegistration, status: RegistrationStatus }) => void
 };
 
-const RegistrationCard = ({ data, deleteRegistration }: Props) => {
+const RegistrationCard = ({ data, deleteRegistration, changeRegistrationStatus }: Props) => {
 
-  const callDeleteRegistration = () => {
+  const handleDeleteRegistration = () => {
     deleteRegistration(data.id)
+  }
+
+  const handleChangeRegistrationStatus = (status: RegistrationStatus) => {
+    return () => {
+      changeRegistrationStatus({ registration: data, status })
+    }
   }
 
   return (
@@ -34,11 +41,11 @@ const RegistrationCard = ({ data, deleteRegistration }: Props) => {
         <span>{data.admissionDate}</span>
       </S.IconAndText>
       <S.Actions>
-        <ButtonSmall bgcolor="rgb(255, 145, 154)" >Reprovar</ButtonSmall>
-        <ButtonSmall bgcolor="rgb(155, 229, 155)">Aprovar</ButtonSmall>
-        <ButtonSmall bgcolor="#ff8858">Revisar novamente</ButtonSmall>
+        <ButtonSmall bgcolor="rgb(255, 145, 154)" onClick={handleChangeRegistrationStatus('REPROVED')}>Reprovar</ButtonSmall>
+        <ButtonSmall bgcolor="rgb(155, 229, 155)" onClick={handleChangeRegistrationStatus('APPROVED')}>Aprovar</ButtonSmall>
+        <ButtonSmall bgcolor="#ff8858" onClick={handleChangeRegistrationStatus('REVIEW')}>Revisar novamente</ButtonSmall>
 
-        <HiOutlineTrash onClick={callDeleteRegistration} />
+        <HiOutlineTrash onClick={handleDeleteRegistration} />
       </S.Actions>
     </S.Card>
   );

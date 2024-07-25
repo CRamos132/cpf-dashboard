@@ -20,7 +20,7 @@ type Props = {
 };
 
 const Collumns = ({ registrations }: Props) => {
-  const { deleteRegistration, separatedData } = useColumns(registrations)
+  const { deleteRegistration, separatedData, changeRegistrationStatus } = useColumns(registrations)
   return (
     <S.Container>
       {allColumns.map((collum) => {
@@ -40,6 +40,7 @@ const Collumns = ({ registrations }: Props) => {
                         data={registration}
                         key={registration.id}
                         deleteRegistration={deleteRegistration}
+                        changeRegistrationStatus={changeRegistrationStatus}
                       />
                     );
                   })
