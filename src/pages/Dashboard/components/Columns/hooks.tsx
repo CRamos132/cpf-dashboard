@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 import { useMemo } from "react"
 import { IRegistration, RegistrationStatus } from "../../hooks"
+import { toast } from "react-toastify"
 
 export default function useColumns(registrations: IRegistration[] = []) {
   const queryClient = useQueryClient()
@@ -32,9 +33,11 @@ export default function useColumns(registrations: IRegistration[] = []) {
       })
 
       queryClient.setQueryData(['registrations'], updatedRegistrations)
+      toast.success("Status alterado com sucesso!")
     },
     onError: (error) => {
-      console.log("🚀 ~ error:", error)
+      console.error("🚀 ~ error:", error)
+      toast.error("Algo deu errado, tente novamente")
     }
   })
 
@@ -45,6 +48,11 @@ export default function useColumns(registrations: IRegistration[] = []) {
       const deletedId = data.id
       const cleanRegistration = registrations.filter(({ id }) => id !== deletedId)
       queryClient.setQueryData(['registrations'], cleanRegistration)
+      toast.success("Usuário removido com sucesso!")
+    },
+    onError: (error) => {
+      console.error("🚀 ~ error:", error)
+      toast.error("Algo deu errado, tente novamente")
     }
   })
 
