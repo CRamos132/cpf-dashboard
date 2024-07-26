@@ -29,16 +29,7 @@ export default function useNewUser() {
 
   const { mutate } = useMutation({
     mutationFn: createRegistration,
-    onSuccess: (data) => {
-      console.log("🚀 ~ data:", data)
-      // const updatedRegistrations = registrations.map(item => {
-      //   if (item.id === data.id) {
-      //     return data
-      //   }
-      //   return item
-      // })
-
-      // queryClient.setQueryData(['registrations'], updatedRegistrations)
+    onSuccess: () => {
       toast.success("Usuário criado com sucesso!")
       goToHome()
     },
