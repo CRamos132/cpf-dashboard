@@ -74,7 +74,6 @@ function useDashboard() {
     }
   })
 
-  // error handling
   const { mutate } = useMutation({
     mutationFn: deleteRegistrationFunction,
     onSuccess: (data) => {
