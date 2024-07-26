@@ -2,7 +2,6 @@
 import * as S from "./styles";
 import RegistrationCard from "../RegistrationCard";
 import { IRegistration, RegistrationStatus } from "../../hooks";
-import useColumns from "./hooks";
 
 interface IColumn {
   status: RegistrationStatus
