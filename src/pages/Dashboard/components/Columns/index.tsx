@@ -2,7 +2,6 @@
 import * as S from "./styles";
 import RegistrationCard from "../RegistrationCard";
 import { IRegistration, RegistrationStatus } from "../../hooks";
-import useColumns from "./hooks";
 
 interface IColumn {
   status: RegistrationStatus
@@ -16,11 +15,13 @@ const allColumns: IColumn[] = [
 ];
 
 type Props = {
-  registrations?: IRegistration[];
+  deleteRegistration: (userId: string) => void
+  changeRegistrationStatus: (data: { registration: IRegistration, status: RegistrationStatus }) => void
+  separatedData?: Record<RegistrationStatus, Record<string, any>>
 };
 
-const Collumns = ({ registrations }: Props) => {
-  const { deleteRegistration, separatedData, changeRegistrationStatus } = useColumns(registrations)
+const Collumns = ({ deleteRegistration, separatedData, changeRegistrationStatus }: Props) => {
+
   return (
     <S.Container>
       {allColumns.map((collum) => {

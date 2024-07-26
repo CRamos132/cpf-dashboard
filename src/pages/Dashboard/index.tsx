@@ -5,12 +5,12 @@ import useDashboard from "./hooks";
 
 const DashboardPage = () => {
 
-  const { data } = useDashboard()
+  const { cpfSearchText, handleSearchChange, refetch, separatedData, changeRegistrationStatus, deleteRegistration } = useDashboard()
 
   return (
     <S.Container>
-      <SearchBar />
-      <Collumns registrations={data} />
+      <SearchBar cpfSearchText={cpfSearchText} handleSearchChange={handleSearchChange} refresh={refetch} />
+      <Collumns separatedData={separatedData} changeRegistrationStatus={changeRegistrationStatus} deleteRegistration={deleteRegistration} />
     </S.Container>
   );
 };
