@@ -10,9 +10,10 @@ interface ISearchBarProps {
   cpfSearchText: string
   handleSearchChange: any
   refresh: () => void
+  isCPFValid: boolean
 }
 
-export const SearchBar = ({ cpfSearchText, handleSearchChange, refresh }: ISearchBarProps) => {
+export const SearchBar = ({ cpfSearchText, handleSearchChange, refresh, isCPFValid }: ISearchBarProps) => {
   const history = useHistory();
 
   const goToNewAdmissionPage = () => {
@@ -21,7 +22,7 @@ export const SearchBar = ({ cpfSearchText, handleSearchChange, refresh }: ISearc
 
   return (
     <S.Container>
-      <TextField placeholder="Digite um CPF válido" onChange={handleSearchChange} value={cpfSearchText} />
+      <TextField placeholder="Digite um CPF válido" onChange={handleSearchChange} value={cpfSearchText} error={isCPFValid ? '' : 'CPF inválido'} />
       <S.Actions>
         <IconButton aria-label="refetch" onClick={refresh}>
           <HiRefresh />
