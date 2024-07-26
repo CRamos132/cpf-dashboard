@@ -21,7 +21,7 @@ type IconButtonProps = {
 
 export const IconButton = (props: IconButtonProps) => {
   return (
-    <_IconButtonStyled {...props}>
+    <_IconButtonStyled type='button' {...props}>
       {props.children}
     </_IconButtonStyled>
   );
