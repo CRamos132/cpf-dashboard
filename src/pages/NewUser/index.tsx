@@ -1,60 +1,24 @@
 import { HiOutlineArrowLeft } from "react-icons/hi";
-import { useHistory } from "react-router-dom";
-import { validate } from 'gerador-validador-cpf';
 import { Formik } from 'formik';
 import TextField from "~/components/TextField";
 import * as S from "./styles";
 import Button from "~/components/Buttons";
 import { IconButton } from "~/components/Buttons/IconButton";
-import routes from "~/router/routes";
+import useNewUser from "./hooks";
 
-interface IFormProps {
-  email: string
-  cpf: string
-  nome: string
-  date: string
-}
+
 
 const NewUserPage = () => {
-  const history = useHistory();
-  const goToHome = () => {
-    history.push(routes.dashboard);
-  };
-
-  function validateForm(values: IFormProps) {
-    const errors: Record<string, any> = {};
-    if (!values.email) {
-      errors.email = 'Obrigatório';
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-    ) {
-      errors.email = 'Email inválido';
-    }
-
-    if (!values.nome) {
-      errors.nome = 'Obrigatório';
-    }
-
-    if (!values.cpf) {
-      errors.cpf = 'Obrigatório';
-    } else if (!validate(values.cpf)) {
-      errors.cpf = 'CPF inválido'
-    }
-
-    if (!values.date) {
-      errors.date = 'Obrigatório';
-    }
-    return errors;
-  }
+  const { validateForm, createRegistration, goToHome } = useNewUser()
 
   return (
     <S.Container>
       <Formik
-        initialValues={{ email: '', cpf: '', nome: '', date: '' }}
+        initialValues={{ email: '', cpf: '', employeeName: '', admissionDate: '' }}
         validate={validateForm}
-        onSubmit={(values, { setSubmitting }) => {
-          console.log("🚀 ~ values:", values)
-          setSubmitting(false);
+        onSubmit={(values) => {
+          createRegistration(values)
+
         }}
       >
         {({
@@ -74,11 +38,11 @@ const NewUserPage = () => {
               <TextField
                 placeholder="Nome"
                 label="Nome"
-                name='nome'
-                value={values.nome}
+                name='employeeName'
+                value={values.employeeName}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={errors?.nome}
+                error={errors?.employeeName}
               />
               <TextField
                 placeholder="Email"
@@ -102,11 +66,11 @@ const NewUserPage = () => {
               <TextField
                 label="Data de admissão"
                 type="date"
-                name='date'
-                value={values.date}
+                name='admissionDate'
+                value={values.admissionDate}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={errors?.date}
+                error={errors?.admissionDate}
               />
               <Button
                 type='submit'
