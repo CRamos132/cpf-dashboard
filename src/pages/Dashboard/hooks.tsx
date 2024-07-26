@@ -117,12 +117,18 @@ function useDashboard() {
     return reducedData
   }, [registrations])
 
+  const isCPFValid = useMemo(() => {
+    if (!debouncedText) {
+      return true
+    }
+    return validate(debouncedText)
+  }, [debouncedText])
+
   useEffect(() => {
-    const isCPFValid = validate(debouncedText)
     if (isCPFValid || !debouncedText) {
       refetch()
     }
-  }, [debouncedText, refetch])
+  }, [debouncedText, isCPFValid, refetch])
 
   return {
     cpfSearchText: searchText,
@@ -130,7 +136,8 @@ function useDashboard() {
     refetch,
     changeRegistrationStatus: mutateStatus,
     deleteRegistration: mutate,
-    separatedData
+    separatedData,
+    isCPFValid
   }
 }
 
