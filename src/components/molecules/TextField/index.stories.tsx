@@ -1,18 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Index from './index';
+import TextInput from './index';
 import { fn } from '@storybook/test';
 
 const meta = {
   title: 'Components/TextField',
   tags: ['autodocs'],
-  component: Index,
+  component: TextInput,
   argTypes: {
     value: { control: 'text' },
-    mask: { control: 'text' }
+    mask: { control: 'text' },
+    label: { control: 'text' },
   },
-  args: { onChange: fn(), value: 'Test', mask: '' },
-} satisfies Meta<typeof Index>;
+  args: { onChange: fn(), value: 'Test', mask: '', label: 'Label' },
+} satisfies Meta<typeof TextInput>;
 
 export default meta;
 
