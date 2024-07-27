@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import Router from "~/router";
-import { Header } from "./components/Header";
+import { Header } from "./components/atoms/Header";
 import { ConfirmationModalContextProvider } from "./contexts/ConfirmationModalContext";
 import 'react-toastify/dist/ReactToastify.css';
 

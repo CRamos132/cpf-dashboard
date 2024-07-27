@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
-import ConfirmationModal from "../../components/ConfirmationModal";
+import ConfirmationModal from "../../components/organisms/ConfirmationModal";
 
-interface IConfirmationModalOptions {
+export interface IConfirmationModalOptions {
   confirmationText: string
   confirmationAction: () => void
 }
