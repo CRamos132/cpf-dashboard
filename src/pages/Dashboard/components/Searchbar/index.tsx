@@ -22,7 +22,13 @@ export const SearchBar = ({ cpfSearchText, handleSearchChange, refresh, isCPFVal
 
   return (
     <S.Container>
-      <TextField placeholder="Digite um CPF válido" onChange={handleSearchChange} value={cpfSearchText} error={isCPFValid ? '' : 'CPF inválido'} />
+      <TextField
+        placeholder="Digite um CPF válido"
+        mask="999.999.999-99"
+        onChange={handleSearchChange}
+        value={cpfSearchText}
+        error={isCPFValid ? '' : 'CPF inválido'}
+      />
       <S.Actions>
         <IconButton aria-label="refetch" onClick={refresh}>
           <HiRefresh />
