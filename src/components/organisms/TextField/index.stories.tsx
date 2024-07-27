@@ -4,7 +4,7 @@ import Index from './index';
 import { fn } from '@storybook/test';
 
 const meta = {
-  title: 'Components/ConfirmationModal',
+  title: 'Components/TextField',
   tags: ['autodocs'],
   component: Index,
   argTypes: {

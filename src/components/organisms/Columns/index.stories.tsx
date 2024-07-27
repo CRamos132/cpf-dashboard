@@ -5,7 +5,7 @@ import { fn } from '@storybook/test';
 
 
 const meta = {
-  title: 'Pages/Dashboard/Collumns',
+  title: 'Components/Collumns',
   component: Collumns,
   tags: ['autodocs'],
   argTypes: {
