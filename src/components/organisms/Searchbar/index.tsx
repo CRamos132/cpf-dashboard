@@ -1,8 +1,8 @@
 import { HiRefresh } from "react-icons/hi";
 import { useHistory } from "react-router-dom";
 import * as S from "./styles";
-import TextField from "../TextField";
-import { IconButton } from "../../molecules/IconButton";
+import TextField from "../../molecules/TextField";
+import { IconButton } from "../../atoms/IconButton";
 import Button from "../../atoms/Button";
 import routes from "../../../router/routes";
 

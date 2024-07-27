@@ -3,8 +3,8 @@ import * as S from "./styles";
 import { INewUserFormProps } from "../../pages/NewUserPage/hooks";
 import { IConfirmationModalOptions } from "../../../contexts/ConfirmationModalContext";
 import { Formik } from "formik";
-import { IconButton } from "../../molecules/IconButton";
-import TextField from "../../organisms/TextField";
+import { IconButton } from "../../atoms/IconButton";
+import TextField from "../../molecules/TextField";
 import Button from "../../atoms/Button";
 import { UseMutateFunction } from "@tanstack/react-query";
 
