@@ -1,17 +1,30 @@
 import { HiOutlineArrowLeft } from "react-icons/hi";
-import { Formik } from 'formik';
-import TextField from "~/components/TextField";
 import * as S from "./styles";
-import Button from "~/components/Buttons";
-import { IconButton } from "~/components/Buttons/IconButton";
-import useNewUser from "./hooks";
-import { useConfirmationModal } from "../../contexts/ConfirmationModalContext";
+import { INewUserFormProps } from "../../pages/NewUserPage/hooks";
+import { IConfirmationModalOptions } from "../../../contexts/ConfirmationModalContext";
+import { Formik } from "formik";
+import { IconButton } from "../../molecules/IconButton";
+import TextField from "../../organisms/TextField";
+import Button from "../../atoms/Button";
+import { UseMutateFunction } from "@tanstack/react-query";
 
 const DEFAULT_FORM_DATA = { email: '', cpf: '', employeeName: '', admissionDate: '' }
 
-const NewUserPage = () => {
-  const { setConfirmationOptions } = useConfirmationModal()
-  const { validateForm, createRegistration, goToHome } = useNewUser()
+interface INewUserTemplate {
+  setConfirmationOptions: (options: IConfirmationModalOptions | null) => void
+  validateForm: (values: INewUserFormProps) => Record<string, any>
+  createRegistration: UseMutateFunction<any, Error, INewUserFormProps, unknown>
+  goToHome: () => void
+}
+
+const NewUserTemplate = ({
+  setConfirmationOptions,
+  validateForm,
+  createRegistration,
+  goToHome,
+}: INewUserTemplate) => {
+  // const { setConfirmationOptions } = useConfirmationModal()
+  // const { validateForm, createRegistration, goToHome } = useNewUser()
 
   return (
     <S.Container>
@@ -90,4 +103,4 @@ const NewUserPage = () => {
   );
 };
 
-export default NewUserPage;
+export default NewUserTemplate;

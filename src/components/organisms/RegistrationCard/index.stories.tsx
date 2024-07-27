@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import RegistrationCard from './index';
-import { IRegistration } from '../../hooks';
+import { IRegistration } from '../../pages/DashboardPage/hooks';
 import { fn } from '@storybook/test';
 
 const defaultData: IRegistration = {

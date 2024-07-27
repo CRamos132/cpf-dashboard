@@ -1,6 +1,6 @@
+import Button from "../../atoms/Button";
+import LinkButton from "../../atoms/LinkButton";
 import * as S from "./styles";
-import Button from "../Buttons";
-import LinkButton from "../Buttons/LinkButton";
 
 interface IConfirmationModal {
   isOpen: boolean

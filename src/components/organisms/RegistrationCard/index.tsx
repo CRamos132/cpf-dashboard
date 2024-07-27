@@ -1,4 +1,3 @@
-import { ButtonSmall } from "~/components/Buttons";
 import {
   HiOutlineMail,
   HiOutlineUser,
@@ -6,8 +5,9 @@ import {
   HiOutlineTrash,
 } from "react-icons/hi";
 import * as S from "./styles";
-import { IRegistration, RegistrationStatus } from "../../hooks";
+import { IRegistration, RegistrationStatus } from "../../pages/DashboardPage/hooks";
 import { useMemo } from "react";
+import ButtonSmall from "../../atoms/ButtonSmall";
 
 type Props = {
   data: IRegistration;

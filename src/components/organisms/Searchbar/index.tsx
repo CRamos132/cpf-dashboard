@@ -1,10 +1,10 @@
 import { HiRefresh } from "react-icons/hi";
 import { useHistory } from "react-router-dom";
-import Button from "~/components/Buttons";
-import { IconButton } from "~/components/Buttons/IconButton";
-import TextField from "~/components/TextField";
-import routes from "~/router/routes";
 import * as S from "./styles";
+import TextField from "../TextField";
+import { IconButton } from "../../molecules/IconButton";
+import Button from "../../atoms/Button";
+import routes from "../../../router/routes";
 
 interface ISearchBarProps {
   cpfSearchText: string

@@ -2,10 +2,10 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { validate } from "gerador-validador-cpf";
 import { toast } from "react-toastify";
-import routes from "../../router/routes";
+import routes from "../../../router/routes";
 import { useHistory } from "react-router-dom";
 
-interface IFormProps {
+export interface INewUserFormProps {
   email: string
   cpf: string
   employeeName: string
@@ -23,7 +23,7 @@ export default function useNewUser() {
     history.push(routes.dashboard);
   };
 
-  const createRegistration = async (formData: IFormProps) => {
+  const createRegistration = async (formData: INewUserFormProps) => {
     const { data } = await axios.post('http://localhost:3000/registrations', {
       ...formData,
       status: 'REVIEW'
@@ -43,7 +43,7 @@ export default function useNewUser() {
     }
   })
 
-  const validateForm = (values: IFormProps) => {
+  const validateForm = (values: INewUserFormProps) => {
     const errors: Record<string, any> = {};
     if (!values.email) {
       errors.email = 'Obrigatório';

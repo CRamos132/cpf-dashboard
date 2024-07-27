@@ -1,7 +1,7 @@
 
 import * as S from "./styles";
 import RegistrationCard from "../RegistrationCard";
-import { IRegistration, RegistrationStatus } from "../../hooks";
+import { IRegistration, RegistrationStatus } from "../../pages/DashboardPage/hooks";
 
 interface IColumn {
   status: RegistrationStatus

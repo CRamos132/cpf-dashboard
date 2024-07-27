@@ -1,10 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 import { useEffect, useMemo, useState } from "react"
-import useDebounce from "../../hooks/useDebounce"
+import useDebounce from "../../../hooks/useDebounce"
 import { validate } from "gerador-validador-cpf"
 import { toast } from "react-toastify"
-import { useConfirmationModal } from "../../contexts/ConfirmationModalContext"
+import { useConfirmationModal } from "../../../contexts/ConfirmationModalContext"
 
 export type RegistrationStatus = 'REVIEW' | 'APPROVED' | 'REPROVED'
 
