@@ -61,6 +61,7 @@ const NewUserPage = () => {
                 placeholder="CPF"
                 label="CPF"
                 name='cpf'
+                mask="999.999.999-99"
                 value={values.cpf}
                 onChange={handleChange}
                 onBlur={handleBlur}
