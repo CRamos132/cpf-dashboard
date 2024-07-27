@@ -5,19 +5,24 @@ import * as S from "./styles";
 import Button from "~/components/Buttons";
 import { IconButton } from "~/components/Buttons/IconButton";
 import useNewUser from "./hooks";
+import { useConfirmationModal } from "../../contexts/ConfirmationModalContext";
 
-
+const DEFAULT_FORM_DATA = { email: '', cpf: '', employeeName: '', admissionDate: '' }
 
 const NewUserPage = () => {
+  const { setConfirmationOptions } = useConfirmationModal()
   const { validateForm, createRegistration, goToHome } = useNewUser()
 
   return (
     <S.Container>
       <Formik
-        initialValues={{ email: '', cpf: '', employeeName: '', admissionDate: '' }}
+        initialValues={DEFAULT_FORM_DATA}
         validate={validateForm}
         onSubmit={(values) => {
-          createRegistration(values)
+          setConfirmationOptions({
+            confirmationAction: () => createRegistration(values),
+            confirmationText: 'criar usuário'
+          })
 
         }}
       >
@@ -27,9 +32,7 @@ const NewUserPage = () => {
           handleChange,
           handleBlur,
           handleSubmit,
-          isSubmitting,
         }) => {
-          console.log("🚀 ~ errors:", errors)
           return (
             <S.Card as="form" onSubmit={handleSubmit}>
               <IconButton onClick={() => goToHome()} aria-label="back">
@@ -74,7 +77,7 @@ const NewUserPage = () => {
               />
               <Button
                 type='submit'
-                disabled={isSubmitting || Object.keys(errors).length}
+                disabled={Object.keys(errors).length}
               >
                 Cadastrar
               </Button>
