@@ -12,8 +12,8 @@ const meta = {
 
   },
   args: {
-    deleteRegistration: fn,
-    changeRegistrationStatus: fn,
+    deleteRegistration: fn(),
+    changeRegistrationStatus: fn(),
     separatedData: {
       APPROVED: [],
       REPROVED: [],

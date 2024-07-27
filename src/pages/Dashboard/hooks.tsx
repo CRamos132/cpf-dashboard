@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react"
 import useDebounce from "../../hooks/useDebounce"
 import { validate } from "gerador-validador-cpf"
 import { toast } from "react-toastify"
+import { useConfirmationModal } from "../../contexts/ConfirmationModalContext"
 
 export type RegistrationStatus = 'REVIEW' | 'APPROVED' | 'REPROVED'
 
@@ -16,10 +17,17 @@ export interface IRegistration {
   id: string
 }
 
+const statusActionTitles: Record<RegistrationStatus, string> = {
+  APPROVED: 'aprovar',
+  REPROVED: 'reprovar',
+  REVIEW: 'revisar novamente'
+}
+
 function useDashboard() {
   const [searchText, setSearchText] = useState('')
   const [debouncedText, setDebouncedText] = useState('')
   const queryClient = useQueryClient()
+  const { setConfirmationOptions } = useConfirmationModal()
 
   const { debouncedAction } = useDebounce(setDebouncedText)
 
@@ -88,6 +96,19 @@ function useDashboard() {
     }
   })
 
+  const handleChangeRegistrationStatus = (variables: { registration: IRegistration, status: RegistrationStatus }) => {
+    setConfirmationOptions({
+      confirmationAction: () => mutateStatus(variables),
+      confirmationText: `${statusActionTitles[variables.status]} este usuário`
+    })
+  }
+
+  const handleDeleteRegistration = (userId: string) => {
+    setConfirmationOptions({
+      confirmationAction: () => mutate(userId),
+      confirmationText: 'deletar este usuário'
+    })
+  }
 
   const handleSearchChange = (event: any) => {
     const value = event.target.value
@@ -133,8 +154,8 @@ function useDashboard() {
     cpfSearchText: searchText,
     handleSearchChange,
     refetch,
-    changeRegistrationStatus: mutateStatus,
-    deleteRegistration: mutate,
+    changeRegistrationStatus: handleChangeRegistrationStatus,
+    deleteRegistration: handleDeleteRegistration,
     separatedData,
     isCPFValid
   }

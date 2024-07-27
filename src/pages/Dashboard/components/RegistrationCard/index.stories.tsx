@@ -22,8 +22,8 @@ const meta = {
   },
   args: {
     data: defaultData,
-    changeRegistrationStatus: fn,
-    deleteRegistration: fn,
+    changeRegistrationStatus: fn(),
+    deleteRegistration: fn(),
   },
 } satisfies Meta<typeof RegistrationCard>;
 
