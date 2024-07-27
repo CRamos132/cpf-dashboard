@@ -2,6 +2,7 @@ import Collumns from "./components/Columns";
 import * as S from "./styles";
 import { SearchBar } from "./components/Searchbar";
 import useDashboard from "./hooks";
+import ConfirmationModal from "../../components/ConfirmationModal";
 
 const DashboardPage = () => {
 
@@ -28,6 +29,7 @@ const DashboardPage = () => {
         changeRegistrationStatus={changeRegistrationStatus}
         deleteRegistration={deleteRegistration}
       />
+      <ConfirmationModal />
     </S.Container>
   );
 };
