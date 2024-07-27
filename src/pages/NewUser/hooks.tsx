@@ -12,6 +12,10 @@ interface IFormProps {
   admissionDate: string
 }
 
+const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+const lettersSeparatedRegex = /^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$/
+const containsSpaceRegex = /^(.*\s+.*)+$/
+
 export default function useNewUser() {
   const history = useHistory();
 
@@ -44,13 +48,15 @@ export default function useNewUser() {
     if (!values.email) {
       errors.email = 'Obrigatório';
     } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+      !emailRegex.test(values.email)
     ) {
       errors.email = 'Email inválido';
     }
 
-    if (!values.admissionDate) {
-      errors.nome = 'Obrigatório';
+    if (!values.employeeName) {
+      errors.employeeName = 'Obrigatório';
+    } else if (!lettersSeparatedRegex.test(values.employeeName) || !containsSpaceRegex.test(values.employeeName)) {
+      errors.employeeName = 'O nome deve conter sobrenome';
     }
 
     if (!values.cpf) {
@@ -60,7 +66,7 @@ export default function useNewUser() {
     }
 
     if (!values.admissionDate) {
-      errors.date = 'Obrigatório';
+      errors.admissionDate = 'Obrigatório';
     }
     return errors;
   }
