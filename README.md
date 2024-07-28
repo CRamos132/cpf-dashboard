@@ -47,8 +47,8 @@ Will open the unit and integration test suite.
 - Currently there's no backend deployed so even the deployed version needs the backend running locally
 - Not having a backend deployed makes it so cypress can't run on an action correctly
 - The end to end tests manipulate the backend directly
+- The input mask library breaks on jest
 
 ### Contact me
 
 - [LinkedIn](https://www.linkedin.com/in/camille-ramos-316abb194/)
-
