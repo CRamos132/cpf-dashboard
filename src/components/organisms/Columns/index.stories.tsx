@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import Collumns from './index';
 import { fn } from '@storybook/test';
-import { EMPTY_COLUMNS, SEPARATED_DATA } from './consts';
+import { EMPTY_COLUMNS, SEPARATED_DATA } from '../../../consts/testConsts';
 
 
 const meta = {

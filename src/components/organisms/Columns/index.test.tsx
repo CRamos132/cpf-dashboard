@@ -1,6 +1,6 @@
 import Columns, { SeparatedDataType } from ".";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { EMPTY_COLUMNS, ONE_CARD_COLUMN, SEPARATED_DATA } from "./consts";
+import { EMPTY_COLUMNS, ONE_CARD_COLUMN, SEPARATED_DATA } from "../../../consts/testConsts";
 
 const emptyFunction = () => { }
 
