@@ -6,6 +6,8 @@ import { validate } from "gerador-validador-cpf"
 import { toast } from "react-toastify"
 import { useConfirmationModal } from "../../../contexts/ConfirmationModalContext"
 import { SeparatedDataType } from "../../organisms/Columns"
+import { useHistory } from "react-router-dom"
+import routes from "../../../router/routes"
 
 export type RegistrationStatus = 'REVIEW' | 'APPROVED' | 'REPROVED'
 
@@ -31,6 +33,12 @@ function useDashboard() {
   const { setConfirmationOptions } = useConfirmationModal()
 
   const { debouncedAction } = useDebounce(setDebouncedText)
+
+  const history = useHistory();
+
+  const goToNewAdmissionPage = () => {
+    history.push(routes.newUser);
+  };
 
   const getRegistrations = async () => {
     const queryURL = new URL('http://localhost:3000/registrations')
@@ -158,7 +166,8 @@ function useDashboard() {
     changeRegistrationStatus: handleChangeRegistrationStatus,
     deleteRegistration: handleDeleteRegistration,
     separatedData,
-    isCPFValid
+    isCPFValid,
+    goToNewAdmissionPage
   }
 }
 

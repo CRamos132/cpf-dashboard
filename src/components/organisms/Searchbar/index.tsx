@@ -1,27 +1,20 @@
 import { HiRefresh } from "react-icons/hi";
-import { useHistory } from "react-router-dom";
 import * as S from "./styles";
 import TextField from "../../molecules/TextField";
 import { IconButton } from "../../atoms/IconButton";
 import Button from "../../atoms/Button";
-import routes from "../../../router/routes";
 
 interface ISearchBarProps {
   cpfSearchText: string
   handleSearchChange: any
   refresh: () => void
   isCPFValid: boolean
+  goToNewAdmissionPage: () => void
 }
 
-export const SearchBar = ({ cpfSearchText, handleSearchChange, refresh, isCPFValid }: ISearchBarProps) => {
-  const history = useHistory();
-
-  const goToNewAdmissionPage = () => {
-    history.push(routes.newUser);
-  };
-
+export const SearchBar = ({ cpfSearchText, handleSearchChange, refresh, isCPFValid, goToNewAdmissionPage }: ISearchBarProps) => {
   return (
-    <S.Container>
+    <S.Container data-testid='searchBar'>
       <TextField
         placeholder="Digite um CPF válido"
         mask="999.999.999-99"
@@ -33,7 +26,7 @@ export const SearchBar = ({ cpfSearchText, handleSearchChange, refresh, isCPFVal
         <IconButton aria-label="refetch" onClick={refresh}>
           <HiRefresh />
         </IconButton>
-        <Button onClick={() => goToNewAdmissionPage()}>Nova Admissão</Button>
+        <Button onClick={goToNewAdmissionPage}>Nova Admissão</Button>
       </S.Actions>
     </S.Container>
   );

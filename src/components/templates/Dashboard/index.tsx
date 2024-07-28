@@ -15,6 +15,7 @@ interface IDashboardPage {
   }) => void
   deleteRegistration: (userId: string) => void
   isCPFValid: boolean
+  goToNewAdmissionPage: () => void
 }
 
 const DashboardTemplate = ({
@@ -24,7 +25,8 @@ const DashboardTemplate = ({
   separatedData,
   changeRegistrationStatus,
   deleteRegistration,
-  isCPFValid
+  isCPFValid,
+  goToNewAdmissionPage
 }: IDashboardPage) => {
 
   return (
@@ -34,6 +36,7 @@ const DashboardTemplate = ({
         handleSearchChange={handleSearchChange}
         refresh={refetch}
         isCPFValid={isCPFValid}
+        goToNewAdmissionPage={goToNewAdmissionPage}
       />
       <Collumns
         separatedData={separatedData}
