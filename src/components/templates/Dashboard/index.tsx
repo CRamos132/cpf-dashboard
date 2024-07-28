@@ -7,7 +7,7 @@ import LoadingSpinner from "../../molecules/LoadingSpinner";
 
 interface IDashboardPage {
   cpfSearchText: string
-  handleSearchChange: (event: any) => void
+  handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<IRegistration[], Error>>
   separatedData: SeparatedDataType
   changeRegistrationStatus: (variables: {

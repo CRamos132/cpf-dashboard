@@ -36,7 +36,7 @@ const Collumns = ({ deleteRegistration, separatedData, changeRegistrationStatus 
               </S.TitleColumn>
               <S.CollumContent data-testid='columnContent'>
                 {
-                  separatedData?.[collum.status]?.map((registration: any) => {
+                  separatedData?.[collum.status]?.map((registration: IRegistration) => {
 
                     return (
                       <RegistrationCard
