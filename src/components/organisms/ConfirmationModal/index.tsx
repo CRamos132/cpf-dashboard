@@ -16,8 +16,8 @@ export default function ConfirmationModal({ isOpen, actionFunction, actionText, 
 
   return (
     <S.ModalWrapper>
-      <S.ModalContent>
-        <S.Text>
+      <S.ModalContent data-testid='modalContent'>
+        <S.Text data-testid='modalText'>
           Você deseja {actionText}?
         </S.Text>
         <S.ButtonsRow>
