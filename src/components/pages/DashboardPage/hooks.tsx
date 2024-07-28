@@ -57,7 +57,7 @@ function useDashboard() {
     return data
   }
 
-  const { data, refetch } = useQuery<IRegistration[]>({ queryKey: ['registrations'], queryFn: getRegistrations })
+  const { data, refetch, isLoading } = useQuery<IRegistration[]>({ queryKey: ['registrations'], queryFn: getRegistrations })
 
   const registrations = useMemo(() => {
     return data ?? []
@@ -157,7 +157,8 @@ function useDashboard() {
     changeRegistrationStatus: handleChangeRegistrationStatus,
     deleteRegistration: handleDeleteRegistration,
     separatedData,
-    isCPFValid
+    isCPFValid,
+    isLoading
   }
 }
 

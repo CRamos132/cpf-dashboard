@@ -3,6 +3,7 @@ import * as S from "./styles";
 import { SearchBar } from "../../organisms/Searchbar";
 import { IRegistration, RegistrationStatus } from "../../pages/DashboardPage/hooks";
 import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
+import LoadingSpinner from "../../molecules/LoadingSpinner";
 
 interface IDashboardPage {
   cpfSearchText: string
@@ -15,6 +16,7 @@ interface IDashboardPage {
   }) => void
   deleteRegistration: (userId: string) => void
   isCPFValid: boolean
+  isLoading: boolean
 }
 
 const DashboardTemplate = ({
@@ -24,11 +26,13 @@ const DashboardTemplate = ({
   separatedData,
   changeRegistrationStatus,
   deleteRegistration,
-  isCPFValid
+  isCPFValid,
+  isLoading
 }: IDashboardPage) => {
 
   return (
     <S.Container>
+      {isLoading && <LoadingSpinner />}
       <SearchBar
         cpfSearchText={cpfSearchText}
         handleSearchChange={handleSearchChange}

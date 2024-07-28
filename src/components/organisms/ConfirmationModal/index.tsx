@@ -1,4 +1,5 @@
 import Button from "../../atoms/Button";
+import { GrayOverlay } from "../../atoms/GrayOverlay";
 import LinkButton from "../../atoms/LinkButton";
 import * as S from "./styles";
 
@@ -15,7 +16,7 @@ export default function ConfirmationModal({ isOpen, actionFunction, actionText, 
   }
 
   return (
-    <S.ModalWrapper>
+    <GrayOverlay>
       <S.ModalContent>
         <S.Text>
           Você deseja {actionText}?
@@ -25,6 +26,6 @@ export default function ConfirmationModal({ isOpen, actionFunction, actionText, 
           <Button onClick={actionFunction}>Confirmar</Button>
         </S.ButtonsRow>
       </S.ModalContent>
-    </S.ModalWrapper>
+    </GrayOverlay>
   )
 }
