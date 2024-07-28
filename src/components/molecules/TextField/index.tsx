@@ -30,9 +30,9 @@ type Props = {
 
 const TextField = (props: Props) => {
   return (
-    <div>
+    <div data-testid='textField'>
       <label htmlFor={props.id}>{props.label}</label>
-      <InputMask mask={props.mask ?? ''} alwaysShowMask {...props}>
+      <InputMask mask={props.mask ?? ''} {...props}>
         <Input />
       </InputMask>
       <span style={{ fontSize: 12, color: 'red' }}>{props.error}</span>

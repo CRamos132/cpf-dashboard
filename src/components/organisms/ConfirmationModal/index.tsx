@@ -23,7 +23,7 @@ export default function ConfirmationModal({ isOpen, actionFunction, actionText, 
         </S.Text>
         <S.ButtonsRow>
           <LinkButton onClick={cancelFunction}>Cancelar</LinkButton>
-          <Button onClick={actionFunction}>Confirmar</Button>
+          <Button data-testid="modalConfirm" onClick={actionFunction}>Confirmar</Button>
         </S.ButtonsRow>
       </S.ModalContent>
     </GrayOverlay>
