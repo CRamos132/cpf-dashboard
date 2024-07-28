@@ -45,8 +45,8 @@ function useDashboard() {
   const getRegistrations = async () => {
     const queryURL = new URL('http://localhost:3000/registrations')
 
-    if (searchText && searchText !== '___.___.___-__') {
-      queryURL.searchParams.set('cpf', searchText)
+    if (!isDebouncedTextEmpty) {
+      queryURL.searchParams.set('cpf', debouncedText)
     }
 
     const { data } = await axios.get(queryURL.toString())
@@ -123,10 +123,11 @@ function useDashboard() {
     })
   }
 
-  const handleSearchChange = (event: any) => {
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value
     setSearchText(value)
-    debouncedAction(value)
+    const cleanCPF = value.replaceAll('.', '').replaceAll('_', '').replace('-', '')
+    debouncedAction(cleanCPF)
   }
 
   const separatedData = useMemo(() => {
@@ -151,7 +152,6 @@ function useDashboard() {
   }, [registrations])
 
   const isCPFValid = useMemo(() => {
-
     if (isDebouncedTextEmpty) {
       return true
     }

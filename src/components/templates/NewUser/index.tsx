@@ -23,8 +23,6 @@ const NewUserTemplate = ({
   createRegistration,
   goToHome,
 }: INewUserTemplate) => {
-  // const { setConfirmationOptions } = useConfirmationModal()
-  // const { validateForm, createRegistration, goToHome } = useNewUser()
 
   return (
     <S.Container>
@@ -55,6 +53,7 @@ const NewUserTemplate = ({
                 placeholder="Nome"
                 label="Nome"
                 name='employeeName'
+                id='employeeName'
                 value={values.employeeName}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -65,6 +64,7 @@ const NewUserTemplate = ({
                 label="Email"
                 type="email"
                 name='email'
+                id='email'
                 value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -74,6 +74,7 @@ const NewUserTemplate = ({
                 placeholder="CPF"
                 label="CPF"
                 name='cpf'
+                id='cpf'
                 mask="999.999.999-99"
                 value={values.cpf}
                 onChange={handleChange}
@@ -84,6 +85,7 @@ const NewUserTemplate = ({
                 label="Data de admissão"
                 type="date"
                 name='admissionDate'
+                id='admissionDate'
                 value={values.admissionDate}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -91,6 +93,7 @@ const NewUserTemplate = ({
               />
               <Button
                 type='submit'
+                data-testid="submitNewUserButton"
                 disabled={Object.keys(errors).length}
               >
                 Cadastrar
