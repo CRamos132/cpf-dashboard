@@ -7,6 +7,7 @@ import { IconButton } from "../../atoms/IconButton";
 import TextField from "../../molecules/TextField";
 import Button from "../../atoms/Button";
 import { UseMutateFunction } from "@tanstack/react-query";
+import dayjs from "dayjs";
 
 const DEFAULT_FORM_DATA = { email: '', cpf: '', employeeName: '', admissionDate: '' }
 
@@ -30,8 +31,13 @@ const NewUserTemplate = ({
         initialValues={DEFAULT_FORM_DATA}
         validate={validateForm}
         onSubmit={(values) => {
+          const formattedDate = dayjs(values.admissionDate).format('DD/MM/YYYY')
+          const newValues = {
+            ...values,
+            admissionDate: formattedDate
+          }
           setConfirmationOptions({
-            confirmationAction: () => createRegistration(values),
+            confirmationAction: () => createRegistration(newValues),
             confirmationText: 'criar usuário'
           })
 
@@ -94,7 +100,7 @@ const NewUserTemplate = ({
               <Button
                 type='submit'
                 data-testid="submitNewUserButton"
-                disabled={Object.keys(errors).length}
+                disabled={Boolean(Object.keys(errors).length)}
               >
                 Cadastrar
               </Button>
