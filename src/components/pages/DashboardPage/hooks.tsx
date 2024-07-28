@@ -1,5 +1,4 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import axios from "axios"
 import { useEffect, useMemo, useState } from "react"
 import useDebounce from "../../../hooks/useDebounce"
 import { validate } from "gerador-validador-cpf"
@@ -8,6 +7,7 @@ import { useConfirmationModal } from "../../../contexts/ConfirmationModalContext
 import { SeparatedDataType } from "../../organisms/Columns"
 import { useHistory } from "react-router-dom"
 import routes from "../../../router/routes"
+import { axiosInstance } from "../../../helpers/axiosInstance"
 
 export type RegistrationStatus = 'REVIEW' | 'APPROVED' | 'REPROVED'
 
@@ -49,12 +49,12 @@ function useDashboard() {
       queryURL.searchParams.set('cpf', debouncedText)
     }
 
-    const { data } = await axios.get(queryURL.toString())
+    const { data } = await axiosInstance.get(queryURL.toString())
     return data
   }
 
   const deleteRegistrationFunction = async (userId: string) => {
-    const { data } = await axios.delete(`http://localhost:3000/registrations/${userId}`)
+    const { data } = await axiosInstance.delete(`http://localhost:3000/registrations/${userId}`)
     return data
   }
 
@@ -64,7 +64,7 @@ function useDashboard() {
       status
     }
 
-    const { data } = await axios.put(`http://localhost:3000/registrations/${registration.id}`, newRegistrationData)
+    const { data } = await axiosInstance.put(`http://localhost:3000/registrations/${registration.id}`, newRegistrationData)
     return data
   }
 
