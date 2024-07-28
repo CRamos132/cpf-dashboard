@@ -37,7 +37,7 @@ const RegistrationCard = ({ data, deleteRegistration, changeRegistrationStatus }
   }, [data.status])
 
   return (
-    <S.Card>
+    <S.Card data-testid='registrationCard'>
       <S.IconAndText>
         <HiOutlineUser />
         <h3>{data.employeeName}</h3>
@@ -55,6 +55,7 @@ const RegistrationCard = ({ data, deleteRegistration, changeRegistrationStatus }
           bgcolor="rgb(255, 145, 154)"
           onClick={handleChangeRegistrationStatus('REPROVED')}
           disabled={!availableActions.includes('reprove')}
+          data-testid='reproveButton'
         >
           Reprovar
         </ButtonSmall>
@@ -62,6 +63,7 @@ const RegistrationCard = ({ data, deleteRegistration, changeRegistrationStatus }
           bgcolor="rgb(155, 229, 155)"
           onClick={handleChangeRegistrationStatus('APPROVED')}
           disabled={!availableActions.includes('approve')}
+          data-testid='aproveButton'
         >
           Aprovar
         </ButtonSmall>
@@ -69,11 +71,12 @@ const RegistrationCard = ({ data, deleteRegistration, changeRegistrationStatus }
           bgcolor="#ff8858"
           onClick={handleChangeRegistrationStatus('REVIEW')}
           disabled={!availableActions.includes('review')}
+          data-testid='reviewButton'
         >
           Revisar novamente
         </ButtonSmall>
 
-        <HiOutlineTrash onClick={handleDeleteRegistration} />
+        <HiOutlineTrash data-testid='deleteButton' onClick={handleDeleteRegistration} />
       </S.Actions>
     </S.Card>
   );

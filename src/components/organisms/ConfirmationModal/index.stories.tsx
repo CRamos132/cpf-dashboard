@@ -10,7 +10,6 @@ const meta = {
   argTypes: {
     isOpen: { control: 'boolean' },
     actionText: { control: 'text' }
-
   },
   args: { actionFunction: fn(), actionText: 'Test', cancelFunction: fn(), isOpen: true },
 } satisfies Meta<typeof ConfirmationModal>;
