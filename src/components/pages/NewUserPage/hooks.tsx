@@ -1,9 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 import { validate } from "gerador-validador-cpf";
 import { toast } from "react-toastify";
 import routes from "../../../router/routes";
 import { useHistory } from "react-router-dom";
+import { axiosInstance } from "../../../helpers/axiosInstance";
 
 export interface INewUserFormProps {
   email: string
@@ -25,7 +25,7 @@ export default function useNewUser() {
   };
 
   const createRegistration = async (formData: INewUserFormProps) => {
-    const { data } = await axios.post('http://localhost:3000/registrations', {
+    const { data } = await axiosInstance.post('http://localhost:3000/registrations', {
       ...formData,
       status: 'REVIEW'
     })
