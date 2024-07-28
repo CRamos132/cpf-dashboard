@@ -6,7 +6,7 @@ import Button from "../../atoms/Button";
 
 interface ISearchBarProps {
   cpfSearchText: string
-  handleSearchChange: any
+  handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   refresh: () => void
   isCPFValid: boolean
   goToNewAdmissionPage: () => void

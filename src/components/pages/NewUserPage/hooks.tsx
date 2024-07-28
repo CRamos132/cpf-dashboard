@@ -13,8 +13,9 @@ export interface INewUserFormProps {
 }
 
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
-const lettersSeparatedRegex = /^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$/
+const lettersSeparatedRegex = /^[a-zA-Z_]+( [a-zA-Z_]+)*$/
 const containsSpaceRegex = /^(.*\s+.*)+$/
+const numberRegex = /^([^0-9]*)$/
 
 export default function useNewUser() {
   const history = useHistory();
@@ -55,8 +56,12 @@ export default function useNewUser() {
 
     if (!values.employeeName) {
       errors.employeeName = 'Obrigatório';
+    } else if (!numberRegex.test(values.employeeName)) {
+      errors.employeeName = 'O nome não pode conter números';
     } else if (!lettersSeparatedRegex.test(values.employeeName) || !containsSpaceRegex.test(values.employeeName)) {
       errors.employeeName = 'O nome deve conter sobrenome';
+    } else if (values.employeeName.replaceAll(' ', '').length <= 2) {
+      errors.employeeName = 'O nome deve conter pelo menos duas letras';
     }
 
     if (!values.cpf) {
