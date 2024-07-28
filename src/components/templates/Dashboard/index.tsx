@@ -1,4 +1,4 @@
-import Collumns from "../../organisms/Columns";
+import Collumns, { SeparatedDataType } from "../../organisms/Columns";
 import * as S from "./styles";
 import { SearchBar } from "../../organisms/Searchbar";
 import { IRegistration, RegistrationStatus } from "../../pages/DashboardPage/hooks";
@@ -8,7 +8,7 @@ interface IDashboardPage {
   cpfSearchText: string
   handleSearchChange: (event: any) => void
   refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<IRegistration[], Error>>
-  separatedData: Record<RegistrationStatus, Record<string, any>>
+  separatedData: SeparatedDataType
   changeRegistrationStatus: (variables: {
     registration: IRegistration;
     status: RegistrationStatus;

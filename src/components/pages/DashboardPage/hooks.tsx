@@ -5,6 +5,7 @@ import useDebounce from "../../../hooks/useDebounce"
 import { validate } from "gerador-validador-cpf"
 import { toast } from "react-toastify"
 import { useConfirmationModal } from "../../../contexts/ConfirmationModalContext"
+import { SeparatedDataType } from "../../organisms/Columns"
 
 export type RegistrationStatus = 'REVIEW' | 'APPROVED' | 'REPROVED'
 
@@ -132,7 +133,7 @@ function useDashboard() {
         [currentStatus]: [curr]
       }
 
-    }, {} as Record<RegistrationStatus, Record<string, any>>)
+    }, {} as SeparatedDataType)
 
     return reducedData
   }, [registrations])
