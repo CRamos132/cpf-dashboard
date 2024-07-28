@@ -60,6 +60,8 @@ export default function useNewUser() {
       errors.employeeName = 'O nome não pode conter números';
     } else if (!lettersSeparatedRegex.test(values.employeeName) || !containsSpaceRegex.test(values.employeeName)) {
       errors.employeeName = 'O nome deve conter sobrenome';
+    } else if (values.employeeName.replaceAll(' ', '').length <= 2) {
+      errors.employeeName = 'O nome deve conter pelo menos duas letras';
     }
 
     if (!values.cpf) {
