@@ -1,4 +1,4 @@
-name: Unit Tests
+name: Jest Tests
 
 on: push
 
@@ -14,4 +14,4 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm run build --if-present
-      - run: npm run test:unit
+      - run: npm run test

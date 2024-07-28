@@ -8,31 +8,33 @@ interface IColumn {
   title: string
 }
 
+export type SeparatedDataType = Record<RegistrationStatus, Record<string, any>>
+
 const allColumns: IColumn[] = [
   { status: 'REVIEW', title: "Pronto para revisar" },
   { status: 'APPROVED', title: "Aprovado" },
   { status: 'REPROVED', title: "Reprovado" },
 ];
 
-type Props = {
+interface IColumns {
   deleteRegistration: (userId: string) => void
   changeRegistrationStatus: (data: { registration: IRegistration, status: RegistrationStatus }) => void
-  separatedData?: Record<RegistrationStatus, Record<string, any>>
-};
+  separatedData?: SeparatedDataType
+}
 
-const Collumns = ({ deleteRegistration, separatedData, changeRegistrationStatus }: Props) => {
+const Collumns = ({ deleteRegistration, separatedData, changeRegistrationStatus }: IColumns) => {
 
   return (
     <S.Container>
       {allColumns.map((collum) => {
 
         return (
-          <S.Column status={collum.status} key={collum.title}>
+          <S.Column data-testid='column' status={collum.status} key={collum.title}>
             <>
               <S.TitleColumn status={collum.status}>
                 {collum.title}
               </S.TitleColumn>
-              <S.CollumContent>
+              <S.CollumContent data-testid='columnContent'>
                 {
                   separatedData?.[collum.status]?.map((registration: any) => {
 

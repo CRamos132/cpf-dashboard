@@ -1,17 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import RegistrationCard from './index';
-import { IRegistration } from '../../pages/DashboardPage/hooks';
 import { fn } from '@storybook/test';
-
-const defaultData: IRegistration = {
-  "admissionDate": "22/10/2023",
-  "email": "luiz@caju.com.br",
-  "employeeName": "Luiz Filho",
-  "status": "APPROVED",
-  "cpf": "56642105087",
-  "id": "3"
-}
+import { REVIEW_DATA } from '../../../consts/testConsts';
 
 const meta = {
   title: 'Components/RegistrationCard',
@@ -21,7 +12,7 @@ const meta = {
     data: {}
   },
   args: {
-    data: defaultData,
+    data: REVIEW_DATA,
     changeRegistrationStatus: fn(),
     deleteRegistration: fn(),
   },
@@ -33,6 +24,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    data: defaultData
+    data: REVIEW_DATA
   }
 };
