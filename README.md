@@ -1,121 +1,54 @@
+# CPF Dashboard
 
-# Caju Front End Teste
+This is a project developed with [React](https://pt-br.reactjs.org/) and [Typescript](https://www.typescriptlang.org/) to query and manipulate user registration with [JSON server](https://www.npmjs.com/package/json-server).
+The project was structured to use [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) as the base for folder structuring.
 
-Esse é um teste para você demonstrar suas experiencia como front end, a aplicação basicamente se divide em duas telas, o `Dashboard` e um `Formulário`.
-Voce deverá criar uma plataforma de admissão que permita o usuario adicionar uma admissão com as opções de aprovar, reprovar ou excluir.
+![image](https://github.com/user-attachments/assets/15c5f1dd-db99-4a50-bb3e-71f7d5404ef5)
+![image](https://github.com/user-attachments/assets/0999323e-7eb2-45ab-9b4c-b46539913de1)
 
-O `Dashboard` mostra todas as admissões criadas, com as opções de Aprovar, reprovar, e excluir.
+## Tools used in the project
 
-![Screenshot 2024-06-11 at 11 48 24 AM](https://github.com/caju-beneficios/caju-front-teste-1/assets/31169925/fedeff5c-a0d3-4df1-aebd-1f2d25c56a48)
+- [React.JS](https://pt-br.reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Styled components](https://styled-components.com/)
+- [Atomic Design](https://github.com/danilowoz/react-atomic-design)
+- [ESLint](https://eslint.org/)
+- [Cypress](https://www.cypress.io/)
+- [Storybook](https://storybook.js.org/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [Tanstack Query](https://tanstack.com/query/latest)
 
-Dashboard com os cards. (Utilize o componente `RegistrationCard`)
+- ## Project instructions
 
-![Screenshot 2024-06-11 at 1 52 35 PM](https://github.com/caju-beneficios/caju-front-teste-1/assets/31169925/3b002341-454b-4b24-82cb-6390656b56cc)
+To run the project locally after cloning the repository you can use the following comands:
 
-O `Formulario` exibe um formulário simples que será utilizado para preencher o dashboard com os dados.
+### `npm install`
 
-![Screenshot 2024-06-11 at 11 48 47 AM](https://github.com/caju-beneficios/caju-front-teste-1/assets/31169925/bbbb211c-165f-40e5-b2af-61adafd61398)
+Will install all the dependencies of the project
 
-## Apresentanção do problema
+### `npm run init:db`
 
-O desafio é melhorar a organização do projeto, refatorar o código e implementar algumas regras e novas funcionalidades(logo abaixo).
-Sinta-se a vontade para criar novas pastas, novos utils, contextos, custom hooks, o que achar melhor para deixar o projeto mais organizado e atigir as especificações abaixo.
+Will start the local server
 
+### `npm run dev`
 
-## Especificações
+Will start the project on the [browser](http://localhost:3001)
 
-### Dashboard
-  
-- Implementar `GET` ao carregar a pagina e ao fazer pequisa por `CPF`
-- Filtrar os cards por coluna, usando o status.
-- Implementar `PUT` ao clicar em Reprovar e alterar o status para `REPROVED`
-- Implementar `PUT` ao clicar em Aprovar e alterar o status para `APPROVED`
-- Implementar `PUT` ao clicar em Revisar novamente e alterar o status para `REVIEW`
-- Implementar `DELETE` ao clicar no lixeira no card.
-- Implementar um loading na tela ao realizar requisições.
-- Realizar a requisição automaticamente ao preencher um CPF válido completo
-- Atualizar os dados (refetch) ao clicar no icone de atualizar
-- Adicionar máscara de CPF no campo de pesquisa.
+### `npm run cy:open`
 
-### Pesquisa por CPF
+Will open the end to end test suite, you must have the project running locally to run the tests.
 
-Para realizar a pesquisa por CPF, utilize essa funcionalidade do json-web-server:
-<br/>
-https://github.com/typicode/json-server/tree/v0?tab=readme-ov-file#filter
+### `npm run test`
 
-### Formulário
+Will open the unit and integration test suite.
 
-- Implementar validação no campo de `email` para que aceite apenas emails válidos
-- Implementar validação no campo `nome completo` para que aceite pelo menos um espaço, no mínimo duas letras, e que a primeira letra não seja um número.
-- Implementar validação no campo CPF para aceitar apenas CPFs válidos e adicionar uma máscara de CPF ao campo.
-- Implementar `POST` ao preencher todos os campos corretamentes.
-- Redirecionar ao `/dashboard` ao criar uma nova registration.
+## Known issues to be improved
 
-## Regras de negócio
+- Currently there's no backend deployed so even the deployed version needs the backend running locally
+- Not having a backend deployed makes it so cypress can't run on an action correctly
+- The end to end tests manipulate the backend directly
 
-- Implementar tipagem correta e enums em TypeScript.
-- Todas as requisições devem ter modal de confirmação da ação
-- Todas as requisições devem aparecer uma notificação de sucesso ou erro
-- O botão de `Reprovar` e `Aprovar` só deve aparecer em registrations com status `REVIEW` 
-- O botão `Revisar novamente` só deve aparecer em registration com status `REPROVED` ou `APPROVED`
+### Contact me
 
-## API
-Você consumirá uma API mockada localmente, que será executada utilizando o json-server. Para mais informações consulte a [documentação](https://github.com/typicode/json-server/).
+- [LinkedIn](https://www.linkedin.com/in/camille-ramos-316abb194/)
 
-Exemplo de Requisição:
-
-```
-POST http://localhost:3000/registrations
-Content-Type: application/json
-{
-  "admissionDate": "23/10/2023",
-  "email": "maria@caju.com.br",
-  "employeeName": "Maria Silva",
-  "status": "REVIEW",
-  "cpf": "12345678901"
-}
-```
-
-
-## Extras (opcional)
-
-- Testes Unitários e de Integração `(Obrigátorio para Senior e Tech Lead)`
-- End-to-End (E2E) 
-- Documentação detalhada utilizando Storybook e Docusaurus
-- Configuração de CI/CD com deploy automatizado
-
-## Dicas e sugestões
-
-- Crie custom hooks para separar a lógica da camada de UI.
-- Utilize alguma lib de validação para o formulário
-- Crie testes que simulem o comportamento esperado do usuario.
-
-## Desenvolvimento
-
-```shell
-git clone https://github.com/caju-beneficios/caju-front-teste-1.git
-cd caju-front-test-1
-yarn 
-yarn dev
-```
-
-Abra outro terminal e execute: 
-```shell
-yarn init:db
-```
-
-Para os testes
-
-```shell
-yarn test:dev
-```
-Se tude tiver dado certo as seguintes portas estarão disponiveis:
-<br/>
-
-Aplicação http://localhost:3001/
-<br/>
-Json Web Server http://localhost:3000/
-
-``
-Para concluir o desenvolvimento, clone o repositório, faça as edições necessárias e depois envie a URL do novo repositório com suas alterações para o RH.
-``
