@@ -36,6 +36,8 @@ function useDashboard() {
 
   const history = useHistory();
 
+  const isDebouncedTextEmpty = debouncedText === '___.___.___-__' || !debouncedText
+
   const goToNewAdmissionPage = () => {
     history.push(routes.newUser);
   };
@@ -43,7 +45,7 @@ function useDashboard() {
   const getRegistrations = async () => {
     const queryURL = new URL('http://localhost:3000/registrations')
 
-    if (searchText) {
+    if (searchText && searchText !== '___.___.___-__') {
       queryURL.searchParams.set('cpf', searchText)
     }
 
@@ -66,7 +68,9 @@ function useDashboard() {
     return data
   }
 
-  const { data, refetch } = useQuery<IRegistration[]>({ queryKey: ['registrations'], queryFn: getRegistrations })
+  const { data, refetch, isLoading, isRefetching } = useQuery<IRegistration[]>({ queryKey: ['registrations'], queryFn: getRegistrations })
+
+  const loading = isLoading || isRefetching
 
   const registrations = useMemo(() => {
     return data ?? []
@@ -147,17 +151,18 @@ function useDashboard() {
   }, [registrations])
 
   const isCPFValid = useMemo(() => {
-    if (!debouncedText) {
+
+    if (isDebouncedTextEmpty) {
       return true
     }
     return validate(debouncedText)
-  }, [debouncedText])
+  }, [debouncedText, isDebouncedTextEmpty])
 
   useEffect(() => {
-    if (isCPFValid || !debouncedText) {
+    if (isCPFValid || isDebouncedTextEmpty) {
       refetch()
     }
-  }, [debouncedText, isCPFValid, refetch])
+  }, [debouncedText, isCPFValid, isDebouncedTextEmpty, refetch])
 
   return {
     cpfSearchText: searchText,
@@ -167,6 +172,7 @@ function useDashboard() {
     deleteRegistration: handleDeleteRegistration,
     separatedData,
     isCPFValid,
+    isLoading: loading,
     goToNewAdmissionPage
   }
 }
