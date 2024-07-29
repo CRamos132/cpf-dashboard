@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { _IconButtonStyled } from "../../atoms/IconButton";
+import { _IconButtonStyled } from "../../atoms/IconButton/styles";
 import Button from "../../atoms/Button";
 
 export const Container = styled.div`
