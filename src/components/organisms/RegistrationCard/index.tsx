@@ -9,7 +9,7 @@ import { IRegistration, RegistrationStatus } from "../../pages/DashboardPage/hoo
 import { useMemo } from "react";
 import ButtonSmall from "../../atoms/ButtonSmall";
 
-type Props = {
+interface IRegistrationCard {
   data: IRegistration;
   deleteRegistration: (userId: string) => void
   changeRegistrationStatus: (data: { registration: IRegistration, status: RegistrationStatus }) => void
@@ -17,7 +17,7 @@ type Props = {
 
 type AvailableActionsType = 'approve' | 'reprove' | 'review'
 
-const RegistrationCard = ({ data, deleteRegistration, changeRegistrationStatus }: Props) => {
+const RegistrationCard = ({ data, deleteRegistration, changeRegistrationStatus }: IRegistrationCard) => {
 
   const handleDeleteRegistration = () => {
     deleteRegistration(data.id)
